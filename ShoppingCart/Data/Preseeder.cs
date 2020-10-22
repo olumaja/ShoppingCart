@@ -8,7 +8,5 @@ namespace ShoppingCart.Data
     public class Preseeder
     {
 
-        
-
     }
 }
