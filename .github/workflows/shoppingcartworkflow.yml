@@ -27,5 +27,5 @@ jobs:
         repository: ${{ secrets.DOCKER_HUB_REPOSITORY }}
     - run: |
           docker build -t cart ShoppingCart
-          docker tag cart 2526m/userapirepo
+          docker tag cart 2526m/cart
           docker push ${{ secrets.DOCKER_HUB_REPOSITORY }}
