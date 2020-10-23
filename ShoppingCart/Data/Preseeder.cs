@@ -7,6 +7,14 @@ namespace ShoppingCart.Data
 {
     public class Preseeder
     {
+        public Preseeder()
+        {
+            
+
+        }
+       
+
+
 
     }
 }
