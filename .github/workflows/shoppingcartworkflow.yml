@@ -42,6 +42,8 @@ jobs:
         SSH_KEY_PATH: ${{ github.workspace }}/../private.key
     - name: Shell into Server 
       run: |
-          ssh -i $SSH_KEY_PATH ec2-user@52.14.87.147
+          pwd
+          ls -la
+          ssh -i ${{ github.workspace }}/../private.key ec2-user@52.14.87.147
           sudo docker images
           exit
