@@ -36,5 +36,5 @@ jobs:
         known_hosts: ${{ secrets.KNOWN_HOST }}
     - name: Run over ssh
       run: |
-          docker container ps
-          exit
+          pwd
+          ls -la
