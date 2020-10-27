@@ -32,9 +32,9 @@ jobs:
     - name: Create SSH key
       run: |
           mkdir -p ~/.ssh/
-          echo ${{ secrets.RSA_PRIVATE_KEY }} > ../private.pem
+          echo "$RSA_PRIVATE_KEY" > ../private.pem
           sudo chmod 600 ../private.pem
-          echo ${{ secrets.KNOWN_HOST }} > ~/.ssh/known_hosts
+          echo "$KNOWN_HOST" > ~/.ssh/known_hosts
       shell: bash
       env:
         SSH_PRIVATE_KEY: ${{secrets.RSA_PRIVATE_KEY}}
