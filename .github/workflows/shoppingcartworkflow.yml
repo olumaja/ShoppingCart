@@ -35,5 +35,6 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOST }}
     - name: Run over ssh
-      run: ssh ec2-user@52.14.87.147 " sudo docker container ps
-          "
+      run: |
+          ssh -tt ec2-user@52.14.87.147 
+          sudo docker container ps
