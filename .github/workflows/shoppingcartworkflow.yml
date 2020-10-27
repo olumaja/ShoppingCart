@@ -29,12 +29,19 @@ jobs:
           docker build -t cart ShoppingCart
           docker tag cart 2526m/userapirepo
           docker push ${{ secrets.DOCKER_HUB_REPOSITORY }}
-    - name: Install SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.DEPLOY_KEY }}
-        known_hosts: ${{ secrets.KNOWN_HOST }}
-    - name: Run over ssh
+    - name: Create SSH key
       run: |
-          ssh -tt ec2-user@52.14.87.147 
-          sudo docker container ps
+          mkdir -p ~/.ssh/
+          echo "$RSA_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$KNOWN_HOST" > ~/.ssh/known_hosts
+      shell: bash
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.RSA_PRIVATE_KEY}}
+        SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOST}}
+        SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+    - name: Shell into Server 
+      run: |
+          ssh -i $SSH_KEY_PATH ec2-user@52.14.87.147
+          sudo docker images
+          exit
