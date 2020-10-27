@@ -36,5 +36,5 @@ jobs:
         known_hosts: ${{ secrets.KNOWN_HOST }}
     - name: Run over ssh
       run: |
-          pwd
-          ls -la
+          ssh ec2-user@52.14.87.147
+          sudo docker container ps
